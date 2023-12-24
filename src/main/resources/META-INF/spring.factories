@@ -1,0 +1,6 @@
+org.springframework.boot.autoconfiguration.EnableAutoConfiguration=\
+ru.serdyuk.starter.configuration.BackgroundConfiguration
+org.springframework.boot.env.EnvironmentPostProcessor=\
+ru.serdyuk.starter.configuration.analyzer.PropertyGuardEnvironmentPostProcessor
+org.springframework.boot.diagnostics.FailureAnalyzer=\
+ru.serdyuk.starter.configuration.analyzer.BackgroundTaskPropertyFailureAnalyzer
