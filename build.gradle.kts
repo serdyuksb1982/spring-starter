@@ -1,7 +1,8 @@
 plugins {
 	java
-	id("org.springframework.boot") version "3.2.1"
-	id("io.spring.dependency-management") version "1.1.4"
+	id("org.springframework.boot") version "3.1.1"
+	id("io.spring.dependency-management") version "1.1.0"
+	id("maven-publish")
 }
 
 group = "ru.serdyuk"
@@ -19,6 +20,26 @@ configurations {
 
 repositories {
 	mavenCentral()
+}
+
+publishing {
+	publications {
+		create<MavenPublication>("mavenJava") {
+			from(components["java"])
+			versionMapping {
+				usage("java-api") {
+					fromResolutionOf("runtimeClasspath")
+				}
+				usage("java-runtime") {
+					fromResolutionResult()
+				}
+			}
+		}
+	}
+
+	repositories{
+		mavenLocal()
+	}
 }
 
 dependencies {

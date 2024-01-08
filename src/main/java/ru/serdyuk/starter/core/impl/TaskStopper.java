@@ -10,20 +10,27 @@ import java.util.concurrent.ScheduledFuture;
 @Slf4j
 public class TaskStopper {
 
+    //хранилище задач - map
     private final Map<String, ScheduledFuture<?>> tasks;
 
-    public void stop(String key) {
-        if (tasks.containsKey(key)) {
-            var currentTask = tasks.get(key);
+    /**
+     * Данный метод отвечает за отключение и удаление задач из хранилища
+     * **/
+    public void stop(String taskKey) {
+        if (tasks.containsKey(taskKey)) {
+            var currentTask = tasks.get(taskKey);
             currentTask.cancel(true);
-            tasks.remove(key);
+            tasks.remove(taskKey);
 
-            log.debug("Task with key {} stopped", key);
+            log.debug("Task with taskKey {} stopped", taskKey);
         }
     }
 
-    void registryTask(String id, ScheduledFuture<?> future) {
-        tasks.put(id, future);
+    /**
+     * Отвечает за хранение задач в хранилище и доступу к ним
+     * **/
+    void registryTask(String taskId, ScheduledFuture<?> future) {
+        tasks.put(taskId, future);
     }
 
 }

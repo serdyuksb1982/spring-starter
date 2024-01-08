@@ -11,17 +11,18 @@ public class BackgroundTaskProperties {
 
     private Boolean enabled;
 
-    //time; cron
+    //time; cron выбор
     private String defaultExecutor;
 
     //количество задач
     private int taskSize;
 
     @NestedConfigurationProperty
-    //TODO данная конфигурация указывает на то, что в свойствах приложения есть вложенные свойства,
+    //TODO данная конфигурация указывает на то, что в свойствах приложения есть вложенные свойства
     private CronExecutorProperties cron;
 
     @NestedConfigurationProperty
+    //TODO данная конфигурация указывает на то, что в свойствах приложения есть вложенные свойства
     private TimeExecutorProperties time;
 
 }

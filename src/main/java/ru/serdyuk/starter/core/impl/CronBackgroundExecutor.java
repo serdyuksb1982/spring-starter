@@ -25,7 +25,8 @@ public class CronBackgroundExecutor implements BackgroundTaskExecutor {
     public void schedule(String taskId, Runnable task) {
         log.debug("CronBackgroundExecutor: task with id {} preparing for schedule", taskId);
 
-        var future = concurrentTaskScheduler.schedule(task, new CronTrigger(backgroundTaskProperties.getCron().getExpression()));
+        var future = concurrentTaskScheduler.schedule(task,
+                new CronTrigger(backgroundTaskProperties.getCron().getExpression()));
         taskStopper.registryTask(taskId, future);
     }
 }
