@@ -5,7 +5,7 @@ plugins {
 	id("maven-publish")
 }
 
-group = "ru.serdyuk"
+group = "ru.serdyuk.starter"
 version = "0.0.1-SNAPSHOT"
 
 java {

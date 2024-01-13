@@ -25,7 +25,10 @@ public class TimeBackgroundTaskExecutor implements BackgroundTaskExecutor {
     public void schedule(String taskId, Runnable task) {
         log.debug("TimeBackgroundTaskExecutor: task with id {} preparing for schedule", taskId);
 
-        var future = concurrentTaskScheduler.schedule(task, new PeriodicTrigger(backgroundTaskProperties.getTime().getInSecondsTime()));
+        var future = concurrentTaskScheduler.schedule(
+                task,
+                new PeriodicTrigger(backgroundTaskProperties.getTime().getInSecondsTime())
+        );
         taskStopper.registryTask(taskId, future);
     }
 }

@@ -10,11 +10,10 @@ import java.util.Objects;
 
 public class PropertyGuardEnvironmentPostProcessor implements EnvironmentPostProcessor {
     @Override
-    public void postProcessEnvironment(ConfigurableEnvironment environment,
-                                       SpringApplication application) {
+    public void postProcessEnvironment(ConfigurableEnvironment environment, SpringApplication application) {
         String defaultExecutor = environment.getProperty("background-executor.default-executor");
-        String cronExpression = environment.getProperty("background-executor.cron-expression");
-        String timeValue = environment.getProperty("background-executor.time.time-in-second-time");
+        String cronExpression = environment.getProperty("background-executor.cron.expression");
+        String timeValue = environment.getProperty("background-executor.time.in-seconds-time");
         String taskSize = environment.getProperty("background-executor.tasksSize");
         boolean enabled = Boolean.parseBoolean(environment.getProperty("background-executor.enabled"));
         if (enabled) {
@@ -27,8 +26,7 @@ public class PropertyGuardEnvironmentPostProcessor implements EnvironmentPostPro
                        String timeValue,
                        String taskSize) {
         boolean isInvalidType = !StringUtils.hasText(defaultExecutor) ||
-                (!Objects.equals(defaultExecutor, "cron") &&
-                  Objects.equals(defaultExecutor, "time"));
+                (!Objects.equals(defaultExecutor, "cron") && !Objects.equals(defaultExecutor, "time"));
         if (isInvalidType) {
             throw new BackgroundTaskPropertyException("Property background-executor.default must be cron or time");
         }

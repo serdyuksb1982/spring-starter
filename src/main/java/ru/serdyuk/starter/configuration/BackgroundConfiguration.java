@@ -15,10 +15,14 @@ import java.util.concurrent.ScheduledFuture;
 
 @Configuration
 @ConditionalOnProperty("background-executor.enabled")
-@EnableConfigurationProperties(BackgroundConfiguration.class)
+@EnableConfigurationProperties(BackgroundTaskProperties.class)
 @Slf4j
 public class BackgroundConfiguration {
 
+    /**
+     * Позволяет пользователю запускать задачи в многопоточной среде
+     * по крону и времени
+     * **/
     @Bean
     public ConcurrentTaskScheduler concurrentTaskScheduler() {
         //CRON "0 0 * * * *" -> run в полночь
